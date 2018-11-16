@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~  Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~      https://mindorks.com/license/apache-v2
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".login.LoginActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ronnie.login.LoginViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/login_username_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/login_username_hint">
+
+                        <com.ronnie.views.PlainPasteEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="flagNoExtractUi"
+                            android:inputType="textNoSuggestions"
+                            android:maxLines="1" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/login_password_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="@string/login_password_hint"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="?android:textColorHint">
+
+                        <com.ronnie.views.PlainPasteEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="flagNoExtractUi"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/login_button"-->
+                    <!--style="@style/TextStyle"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:enabled="false"-->
+                    <!--android:text="@string/menu_login"-->
+                    <!--android:onClick="@{() -> viewModel.onLoginClick()}"-->
+                    <!--android:layout_marginLeft="0dp"-->
+                    <!--android:layout_marginRight="0dp"/>-->
+
+                    <Button
+                        android:id="@+id/btnServerLogin"
+                        style="@style/Button.Primary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp"
+                        android:onClick="@{() -> viewModel.onLoginClick()}"
+                        android:padding="10dp"
+                        android:text="@string/menu_login"
+                        android:textSize="18dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:id="@+id/forgot_password_link"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:text="@string/login_forgot_password"
+                            android:textColor="?attr/colorAccent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:text="•"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/privacy_policy_link"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:text="@string/privacy_policy_description"
+                            android:textColor="?attr/colorAccent" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/address_looking_up"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+
+    </FrameLayout>
+</layout>
